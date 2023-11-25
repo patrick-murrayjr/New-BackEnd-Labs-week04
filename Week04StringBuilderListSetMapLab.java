@@ -34,7 +34,11 @@ public class Week04StringBuilderListSetMapLab {
                 sb.append("-");
             }
         }
-		
+        System.out.println("Question 1");
+		System.out.println("We would us a StringBuilder  instead of a String because a StringBuilder\r\n"
+				+ "is a mutable object and a String is not. Each time you try to modify a string you\r\n"
+				+ "need to create a new string and doing this can be a source of memory leaks");
+		System.out.println(sb);
 		
 		// 2. List of String:
 		//		a. Create a list of Strings 
@@ -45,11 +49,12 @@ public class Week04StringBuilderListSetMapLab {
         fiveStrings.add("abcde");
         fiveStrings.add("mnopqr");
         fiveStrings.add("ab");
-
+        System.out.println("\nQuestion 2");
+        System.out.println(fiveStrings);
 		
 		// 3. Write and test a method that takes a list of strings 
 		//			and returns the shortest string
-        System.out.println("Question 3");
+        System.out.println("\nQuestion 3");
         System.out.println(findShortest(fiveStrings));
 		
 		// 4. Write and test a method that takes a list of strings 
@@ -145,21 +150,23 @@ public class Week04StringBuilderListSetMapLab {
 		//			and returns a Map<Character, Integer> containing a count of 
 		//			all the strings that start with a given character
         System.out.println("\nQuestion 15");
-        System.out.println("Search Char: a");
-        System.out.println(countStartingCharacters(fiveStrings, 'a'));
+        System.out.println(fiveStrings);
+        System.out.println(countStartingCharacters(fiveStrings));
 
 	}
 
 	// Method 15:
-	private static Map<Character, Integer> countStartingCharacters(List<String> list, char character) {
+	private static Map<Character, Integer> countStartingCharacters(List<String> list) {
 		Map<Character, Integer> result =  new HashMap<>();
-		int count = 0;
 		for(String item : list) {
-			if(item.charAt(0) == character) {
-				count++;
+			char key = item.charAt(0);
+			if (result.containsKey(key)) {
+				int val = result.get(key);
+				result.put(key, ++val);	
+			}else {
+				result.put(key, 1);
 			}
 		}
-		result.put(character, count);
 		return result;
 	}
 	
@@ -219,11 +226,13 @@ public class Week04StringBuilderListSetMapLab {
         for (int i = 0; i < intList.size(); i++) {
             if (intList.get(i) % 2 == 0) {
                 divisibleBy2.add(intList.get(i));
-            } else if (intList.get(i) % 3 == 0) {
+            } if (intList.get(i) % 3 == 0) {
                 divisibleBy3.add(intList.get(i));
-            } else if (intList.get(i) % 5 == 0) {
+            } if (intList.get(i) % 5 == 0) {
                 divisibleBy5.add(intList.get(i));
-            } else {
+            } if ((intList.get(i) % 2 != 0) 
+            		&& (intList.get(i) % 3 != 0) 
+            		&& (intList.get(i) % 5 != 0)) {
             	isNotDivisibleBy2or3or5.add(intList.get(i));
             }
         }
